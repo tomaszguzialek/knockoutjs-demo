@@ -1,0 +1,14 @@
+{
+  "name": "knockoutjs-app",
+  "version": "0.0.1",
+  "description": "Demo app using Knockout JS",
+  "author": "Tomasz Guzialek",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "knockout": "^3.4.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "gulp": "^3.9.1"
+  }
+}
