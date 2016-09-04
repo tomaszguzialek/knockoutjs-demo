@@ -1,14 +1,14 @@
 import ko from 'knockout';
-import homeTemplate from 'text!./home.html';
+import featureRequestsTemplate from 'text!./feature_requests.html';
 
-class HomeViewModel {
+class FeatureRequestsViewModel {
     constructor(route) {
         this.message = ko.observable('Welcome to knockoutjs-demo!');
     }
-    
+
     doSomething() {
         this.message('You invoked doSomething() on the viewmodel.');
     }
 }
 
-export default { viewModel: HomeViewModel, template: homeTemplate };
+export default { viewModel: FeatureRequestsViewModel, template: featureRequestsTemplate };
