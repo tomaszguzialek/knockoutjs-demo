@@ -38,3 +38,6 @@ jspm_packages
 
 # Bower modules
 bower_modules
+
+# Distribution folder
+dist
