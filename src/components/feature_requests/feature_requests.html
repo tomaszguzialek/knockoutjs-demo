@@ -1,5 +1,20 @@
 <h2>Feature requests</h2>
 
-<p data-bind='text: message'></p>
-
-<button data-bind='click: doSomething'>Click me</button>
+<table>
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Client ID</td>
+      <td>Title</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody data-bind="foreach: feature_requests">
+    <tr>
+      <td data-bind="text: id"></td>
+      <td data-bind="text: client_id"></td>
+      <td data-bind="text: title"></td>
+      <td data-bind="text: description"></td>
+    </tr>
+  </tbody>
+</table>

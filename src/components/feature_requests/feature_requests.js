@@ -3,11 +3,15 @@ import featureRequestsTemplate from 'text!./feature_requests.html';
 
 class FeatureRequestsViewModel {
     constructor(route) {
-        this.message = ko.observable('Welcome to knockoutjs-demo!');
+        this.feature_requests = ko.observableArray([]);
+        this.getAllFeatureRequests();
     }
 
-    doSomething() {
-        this.message('You invoked doSomething() on the viewmodel.');
+    getAllFeatureRequests() {
+        var self = this;
+        $.getJSON('http://localhost:5000/v1/feature_request', function (data) {
+          self.feature_requests(data.feature_requests);
+        })
     }
 }
 
