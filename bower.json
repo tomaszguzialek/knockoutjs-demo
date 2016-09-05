@@ -10,7 +10,8 @@
     "requirejs-text": "~2.0.10",
     "knockout": "~3.3.0-alpha",
     "knockout-projections": "~1.1.0",
-    "datatables.net": "^1.10.12"
+    "datatables.net": "^1.10.12",
+    "datatables.net-bs": "^1.10.12"
   },
   "resolutions": {
     "knockout": "~3.3.0-alpha"
