@@ -9,7 +9,8 @@ var require = {
         "knockout":             "bower_modules/knockout/dist/knockout",
         "knockout-projections": "bower_modules/knockout-projections/dist/knockout-projections",
         "signals":              "bower_modules/js-signals/dist/signals.min",
-        "text":                 "bower_modules/requirejs-text/text"
+        "text":                 "bower_modules/requirejs-text/text",
+        "datatables":           "bower_modules/datatables.net/js/jquery.dataTables.min"
     },
     shim: {
         "bootstrap": { deps: ["jquery"] }
