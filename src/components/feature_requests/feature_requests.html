@@ -1,5 +1,13 @@
 <h2>Feature requests</h2>
 
+<div class="text-center">
+  Show feature requests for:
+  <div data-bind="foreach: clientIds" class="filter">
+
+    <button class="btn btn-default" data-bind="text: $data === 0 ? 'All clients' : 'Client ID ' + $data, click: $component.filterByClientId.bind($component)"></button>
+  </div>
+</div>
+
 <table id="feature_requests_dt" class="table table-hover">
   <thead>
     <tr>
