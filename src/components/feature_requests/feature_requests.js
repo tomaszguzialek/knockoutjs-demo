@@ -5,6 +5,8 @@ import featureRequestsTemplate from 'text!./feature_requests.html';
 class FeatureRequestsViewModel {
     constructor(route) {
         this.clients = ko.observableArray();
+        this.currentClientFilter = ko.observable(null);
+
         this.getAllFeatureRequests();
         this.getAllClients();
     }
@@ -32,7 +34,19 @@ class FeatureRequestsViewModel {
     }
 
     filterByClient(client) {
-      this.table.column([1]).search(client !== this ? client.id : '').draw();
+      if (client === this) {
+        client = null;
+      }
+      this.currentClientFilter(client);
+      this.table.column([1]).search(client ? client.id : '').draw();
+    }
+
+    isSelected(client) {
+      if (client === this) {
+        client = null;
+      }
+
+      return client === this.currentClientFilter();
     }
 }
 

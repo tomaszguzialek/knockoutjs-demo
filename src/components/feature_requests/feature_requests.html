@@ -2,9 +2,9 @@
 
 <div class="text-center">
   Show feature requests for:
-  <button class="btn btn-default" data-bind="click: $component.filterByClient.bind($component)">All clients</button>
+  <button class="btn" data-bind="css: {'btn-success' : $component.isSelected.bind($component)($data), 'btn-default' : !$component.isSelected.bind($component)($data)}, click: $component.filterByClient.bind($component)">All clients</button>
   <!-- ko foreach: clients -->
-    <button class="btn btn-default" data-bind="text: name, click: $component.filterByClient.bind($component)"></button>
+    <button class="btn" data-bind="css: {'btn-success' : $component.isSelected($data), 'btn-default' : !$component.isSelected.bind($component)($data)}, text: name, click: $component.filterByClient.bind($component)"></button>
   <!-- /ko -->
 </div>
 
