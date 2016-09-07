@@ -7,6 +7,10 @@ class FeatureRequestsViewModel {
         this.clients = ko.observableArray();
         this.currentClientFilter = ko.observable(null);
 
+        this.newFeatureRequestTitle = ko.observable();
+        this.newFeatureRequestDescription = ko.observable();
+        this.newFeatureRequestClient = ko.observable();
+
         this.getAllFeatureRequests();
         this.getAllClients();
     }
@@ -47,6 +51,12 @@ class FeatureRequestsViewModel {
       }
 
       return client === this.currentClientFilter();
+    }
+
+    addNewFeatureRequest() {
+      console.log(this.newFeatureRequestTitle());
+      console.log(this.newFeatureRequestDescription());
+      console.log(this.newFeatureRequestClient());
     }
 }
 
