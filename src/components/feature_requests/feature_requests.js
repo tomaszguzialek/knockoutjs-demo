@@ -4,8 +4,9 @@ import featureRequestsTemplate from 'text!./feature_requests.html';
 
 class FeatureRequestsViewModel {
     constructor(route) {
-        this.clientIds = ko.observableArray([0, 1, 2, 3]);
+        this.clients = ko.observableArray();
         this.getAllFeatureRequests();
+        this.getAllClients();
     }
 
     getAllFeatureRequests() {
@@ -19,12 +20,19 @@ class FeatureRequestsViewModel {
               { data: 'title' },
               { data: 'description' }
             ]
-          });
-        })
+          })
+        });
     }
 
-    filterByClientId(clientId) {
-      this.table.column([1]).search(clientId !== 0 ? clientId : '').draw();
+    getAllClients() {
+        var self = this;
+        $.getJSON('http://localhost:5000/v1/client', function (data) {
+          self.clients(data.clients);
+        });
+    }
+
+    filterByClient(client) {
+      this.table.column([1]).search(client !== this ? client.id : '').draw();
     }
 }
 

@@ -2,10 +2,10 @@
 
 <div class="text-center">
   Show feature requests for:
-  <div data-bind="foreach: clientIds" class="filter">
-
-    <button class="btn btn-default" data-bind="text: $data === 0 ? 'All clients' : 'Client ID ' + $data, click: $component.filterByClientId.bind($component)"></button>
-  </div>
+  <button class="btn btn-default" data-bind="click: $component.filterByClient.bind($component)">All clients</button>
+  <!-- ko foreach: clients -->
+    <button class="btn btn-default" data-bind="text: name, click: $component.filterByClient.bind($component)"></button>
+  <!-- /ko -->
 </div>
 
 <table id="feature_requests_dt" class="table table-hover">
