@@ -54,9 +54,25 @@ class FeatureRequestsViewModel {
     }
 
     addNewFeatureRequest() {
-      console.log(this.newFeatureRequestTitle());
-      console.log(this.newFeatureRequestDescription());
-      console.log(this.newFeatureRequestClient());
+      var data = {
+        title: this.newFeatureRequestTitle(),
+        description: this.newFeatureRequestDescription(),
+        client_id: this.newFeatureRequestClient().id
+      };
+      $.ajax({
+        url: 'http://localhost:5000/v1/feature_request',
+        data: ko.toJSON(data),
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function (response) {
+          console.log(response);
+          $('#addFeatureRequestModal').modal('hide');
+        },
+        error: function (error) {
+          console.error(error);
+        }
+      });
     }
 }
 
