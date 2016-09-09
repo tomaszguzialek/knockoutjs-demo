@@ -11,7 +11,8 @@
     "knockout": "~3.3.0-alpha",
     "knockout-projections": "~1.1.0",
     "datatables.net": "^1.10.12",
-    "datatables.net-bs": "^1.10.12"
+    "datatables.net-bs": "^1.10.12",
+    "components-font-awesome": "^4.6.3"
   },
   "resolutions": {
     "knockout": "~3.3.0-alpha"

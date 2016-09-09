@@ -7,6 +7,10 @@ class FeatureRequestsViewModel {
         this.clients = ko.observableArray();
         this.currentClientFilter = ko.observable(null);
 
+        this.newFeatureRequestTitle = ko.observable();
+        this.newFeatureRequestDescription = ko.observable();
+        this.newFeatureRequestClient = ko.observable();
+
         this.getAllFeatureRequests();
         this.getAllClients();
     }
@@ -47,6 +51,28 @@ class FeatureRequestsViewModel {
       }
 
       return client === this.currentClientFilter();
+    }
+
+    addNewFeatureRequest() {
+      var data = {
+        title: this.newFeatureRequestTitle(),
+        description: this.newFeatureRequestDescription(),
+        client_id: this.newFeatureRequestClient().id
+      };
+      $.ajax({
+        url: 'http://localhost:5000/v1/feature_request',
+        data: ko.toJSON(data),
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function (response) {
+          console.log(response);
+          $('#addFeatureRequestModal').modal('hide');
+        },
+        error: function (error) {
+          console.error(error);
+        }
+      });
     }
 }
 
