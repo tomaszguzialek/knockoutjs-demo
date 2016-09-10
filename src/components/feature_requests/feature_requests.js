@@ -1,6 +1,7 @@
 import ko from 'knockout';
 import 'datatables';
 import featureRequestsTemplate from 'text!./feature_requests.html';
+import { app_config } from 'app/app_config';
 
 class FeatureRequestsViewModel {
     constructor(route) {
@@ -17,7 +18,7 @@ class FeatureRequestsViewModel {
 
     getAllFeatureRequests() {
         var self = this;
-        $.getJSON('http://localhost:5000/v1/feature_request', function (data) {
+        $.getJSON('http://' + app_config.api_host + '/v1/feature_request', function (data) {
           self.table = $('#feature_requests_dt').DataTable({
             data: data.feature_requests,
             columns: [
@@ -32,7 +33,7 @@ class FeatureRequestsViewModel {
 
     getAllClients() {
         var self = this;
-        $.getJSON('http://localhost:5000/v1/client', function (data) {
+        $.getJSON('http://' + app_config.api_host + '/v1/client', function (data) {
           self.clients(data.clients);
         });
     }
