@@ -35,7 +35,8 @@ class Router {
 var routerInstance = new Router({
     routes: [
         { url: '', params: { page: 'feature_requests' } },
-        { url: 'feature_requests', params: { page: 'feature_requests' } }
+        { url: 'feature_requests', params: { page: 'feature_requests' } },
+        { url: 'login', params: { page: 'login' } }
     ]
 });
 
