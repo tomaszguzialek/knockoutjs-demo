@@ -1,7 +1,6 @@
 import ko from 'knockout';
 import 'datatables';
 import Cookie from 'js-cookie';
-import hasher from 'hasher';
 import featureRequestsTemplate from 'text!./feature_requests.html';
 import { app_config } from 'app/app_config';
 import * as router from 'app/router';
@@ -40,6 +39,11 @@ class FeatureRequestsViewModel {
                   { data: 'description' }
                 ]
               })
+            },
+            error: function (error) {
+              if (error.status === 403) {
+                router.hasher.setHash('login');
+              }
             }
           });
         } else {
@@ -60,6 +64,11 @@ class FeatureRequestsViewModel {
             },
             success: function (data) {
                 self.clients(data.clients);
+            },
+            error: function (error) {
+              if (error.status === 403) {
+                router.hasher.setHash('login');
+              }
             }
           });
         } else {
@@ -107,7 +116,9 @@ class FeatureRequestsViewModel {
             $('#addFeatureRequestModal').modal('hide');
           },
           error: function (error) {
-            console.error(error);
+            if (error.status === 403) {
+              router.hasher.setHash('login');
+            }
           }
         });
       } else {
