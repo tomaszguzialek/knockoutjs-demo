@@ -1,6 +1,6 @@
 import ko from 'knockout';
 import Cookie from 'js-cookie';
-import hasher from 'hasher';
+import * as router from 'app/router';
 import loginTemplate from 'text!./login.html';
 import { app_config } from 'app/app_config';
 
@@ -26,10 +26,11 @@ class LoginViewModel {
         dataType: "text",
         success: function (response) {
           var json = $.parseJSON(response);
-          Cookie.set('token', json.token);
+          Cookie.set('token', json.token, { expires: 1/480 }); // 3 mins
+          router.hasher.setHash('');
         },
         error: function (error) {
-          console.error(error);
+          console.error("Error while calling login endpoint: " + error);
         }
       });
     }
