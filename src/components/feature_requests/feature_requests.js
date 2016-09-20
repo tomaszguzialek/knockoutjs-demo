@@ -61,7 +61,7 @@ class FeatureRequestsViewModel {
         client_id: this.newFeatureRequestClient().id
       };
       $.ajax({
-        url: 'http://localhost:5000/v1/feature_request',
+        url: 'http://' + app_config.api_host + 'v1/feature_request',
         data: ko.toJSON(data),
         type: 'POST',
         contentType: "application/json; charset=utf-8",
