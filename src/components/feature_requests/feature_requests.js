@@ -15,8 +15,15 @@ class FeatureRequestsViewModel {
         this.newFeatureRequestDescription = ko.observable();
         this.newFeatureRequestClient = ko.observable();
 
-        this.getAllFeatureRequests();
-        this.getAllClients();
+        var token = Cookie.get('token');
+
+        if (!token) {
+          alertify.log("Your session expired! Please login again!");
+          router.hasher.setHash('login');
+        } else {
+          this.getAllFeatureRequests();
+          this.getAllClients();
+        }
     }
 
     getAllFeatureRequests() {
