@@ -129,9 +129,12 @@ class FeatureRequestsViewModel {
             alertify.success("Feature request added successfully!");
           },
           error: function (error) {
+            $('#addFeatureRequestModal').modal('hide');
             if (error.status === 403) {
               alertify.error("Your session expired! Please login again and redo the action!");
               router.hasher.setHash('login');
+            } else {
+              alertify.error("An error occurred. Please try again.");
             }
           }
         });

@@ -21,6 +21,7 @@ var checkLoggedInInterval = setInterval(function () {
 
   if (!token && router.currentRoute().page !== 'login') {
     console.log("Detected token cookie removed, redirecting to login page.");
+    $('div.modal-backdrop').remove();
     alertify.log("Your session expired! Please login again!");
     router.hasher.setHash('login');
   }
