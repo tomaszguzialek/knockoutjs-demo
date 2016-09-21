@@ -11,7 +11,8 @@ var require = {
         "signals":              "bower_modules/js-signals/dist/signals.min",
         "text":                 "bower_modules/requirejs-text/text",
         "datatables":           "bower_modules/datatables.net/js/jquery.dataTables.min",
-        "js-cookie":            "bower_modules/js-cookie/src/js.cookie"
+        "js-cookie":            "bower_modules/js-cookie/src/js.cookie",
+        "alertifyjs":           "bower_modules/alertifyjs/dist/js/alertify"
     },
     shim: {
         "bootstrap": { deps: ["jquery"] }
