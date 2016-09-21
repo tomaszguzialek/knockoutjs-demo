@@ -1,6 +1,7 @@
 import ko from 'knockout';
 import 'datatables';
 import Cookie from 'js-cookie';
+import alertify from 'alertifyjs';
 import featureRequestsTemplate from 'text!./feature_requests.html';
 import { app_config } from 'app/app_config';
 import * as router from 'app/router';
@@ -42,11 +43,13 @@ class FeatureRequestsViewModel {
             },
             error: function (error) {
               if (error.status === 403) {
+                alertify.log("Your session expired! Please login again!");
                 router.hasher.setHash('login');
               }
             }
           });
         } else {
+          alertify.log("Your session expired! Please login again!");
           router.hasher.setHash('login');
         }
     }
@@ -67,11 +70,13 @@ class FeatureRequestsViewModel {
             },
             error: function (error) {
               if (error.status === 403) {
+                alertify.log("Your session expired! Please login again!");
                 router.hasher.setHash('login');
               }
             }
           });
         } else {
+          alertify.log("Your session expired! Please login again!");
           router.hasher.setHash('login');
         }
     }
@@ -114,14 +119,17 @@ class FeatureRequestsViewModel {
           success: function (response) {
             console.log(response);
             $('#addFeatureRequestModal').modal('hide');
+            alertify.success("Feature request added successfully!");
           },
           error: function (error) {
             if (error.status === 403) {
+              alertify.error("Your session expired! Please login again and redo the action!");
               router.hasher.setHash('login');
             }
           }
         });
       } else {
+        alertify.error("Your session expired! Please login again and redo the action!");
         router.hasher.setHash('login');
       }
     }
