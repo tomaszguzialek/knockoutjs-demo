@@ -24,9 +24,10 @@ class Router {
 
         // Activate Crossroads
         crossroads.normalizeFn = crossroads.NORM_AS_OBJECT;
-        hasher.initialized.add(hash => crossroads.parse(hash));
-        hasher.changed.add(hash => crossroads.parse(hash));
-        hasher.init();
+        this.hasher = hasher;
+        this.hasher.initialized.add(hash => crossroads.parse(hash));
+        this.hasher.changed.add(hash => crossroads.parse(hash));
+        this.hasher.init();
     }
 }
 
@@ -34,7 +35,8 @@ class Router {
 var routerInstance = new Router({
     routes: [
         { url: '', params: { page: 'feature_requests' } },
-        { url: 'feature_requests', params: { page: 'feature_requests' } }
+        { url: 'feature_requests', params: { page: 'feature_requests' } },
+        { url: 'login', params: { page: 'login' } }
     ]
 });
 

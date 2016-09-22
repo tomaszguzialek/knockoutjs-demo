@@ -17,3 +17,11 @@
 .add-icon a {
 	color: black;
 }
+
+.form-login-container {
+	width: 200px;
+}
+
+.form-login-container button {
+	margin-top: 10px;
+}
