@@ -1,7 +1,8 @@
 import 'jquery';
 import 'bootstrap';
 import ko from 'knockout';
-import 'knockout-projections'
+import 'knockout-projections';
+import 'knockout-postbox';
 import * as router from './router';
 
 // Components can be packaged as AMD modules, such as the following:

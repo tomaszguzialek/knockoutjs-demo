@@ -10,7 +10,7 @@ class NavBarViewModel {
         // You could remove this viewmodel entirely, and define 'nav-bar' as a template-only component.
         // But in most apps, you'll want some viewmodel logic to determine what navigation options appear.
         this.route = params.route;
-        this.isLoggedIn = ko.observable(Cookie.get('token') ? true : false);
+        this.isLoggedIn = ko.observable(Cookie.get('token') ? true : false).syncWith("isLoggedIn");
 
         var self = this;
         var checkLoggedInInterval = setInterval(function () {

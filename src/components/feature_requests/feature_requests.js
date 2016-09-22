@@ -16,6 +16,7 @@ class FeatureRequestsViewModel {
         this.newFeatureRequestClient = ko.observable();
 
         var token = Cookie.get('token');
+        this.isLoggedIn = ko.observable(token ? true : false).syncWith("isLoggedIn");
 
         if (!token) {
           alertify.log("Your session expired! Please login again!");
