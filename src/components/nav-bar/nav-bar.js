@@ -31,6 +31,7 @@ class NavBarViewModel {
     }
 
     logout() {
+      Cookie.remove('token');
       this.isLoggedIn(false);
     }
 }
