@@ -109,6 +109,8 @@ class FeatureRequestsViewModel {
     }
 
     addNewFeatureRequest() {
+      var self = this;
+
       var data = {
         title: this.newFeatureRequestTitle(),
         description: this.newFeatureRequestDescription(),
@@ -128,9 +130,9 @@ class FeatureRequestsViewModel {
             'token': token
           },
           success: function (response) {
-            console.log(response);
             $('#addFeatureRequestModal').modal('hide');
             alertify.success("Feature request added successfully!");
+            self.getAllFeatureRequests();
           },
           error: function (error) {
             $('#addFeatureRequestModal').modal('hide');
