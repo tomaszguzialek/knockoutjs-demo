@@ -15,6 +15,16 @@ class FeatureRequestsViewModel {
         this.newFeatureRequestDescription = ko.observable();
         this.newFeatureRequestClient = ko.observable();
 
+        this.table = $('#feature_requests_dt').DataTable({
+          data: [],
+          columns: [
+            { data: 'id' },
+            { data: 'client_id' },
+            { data: 'title' },
+            { data: 'description' }
+          ]
+        });
+
         var token = Cookie.get('token');
         this.isLoggedIn = ko.observable(token ? true : false).syncWith("isLoggedIn");
 
@@ -39,15 +49,8 @@ class FeatureRequestsViewModel {
               'token': token
             },
             success: function (data) {
-              self.table = $('#feature_requests_dt').DataTable({
-                data: data.feature_requests,
-                columns: [
-                  { data: 'id' },
-                  { data: 'client_id' },
-                  { data: 'title' },
-                  { data: 'description' }
-                ]
-              })
+              self.table.clear().draw();
+              self.table.rows.add(data.feature_requests).draw();
             },
             error: function (error) {
               if (error.status === 403) {
