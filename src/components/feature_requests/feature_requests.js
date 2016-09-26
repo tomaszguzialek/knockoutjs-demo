@@ -15,6 +15,16 @@ class FeatureRequestsViewModel {
         this.newFeatureRequestDescription = ko.observable();
         this.newFeatureRequestClient = ko.observable();
 
+        this.table = $('#feature_requests_dt').DataTable({
+          data: [],
+          columns: [
+            { data: 'id' },
+            { data: 'client_id' },
+            { data: 'title' },
+            { data: 'description' }
+          ]
+        });
+
         var token = Cookie.get('token');
         this.isLoggedIn = ko.observable(token ? true : false).syncWith("isLoggedIn");
 
@@ -39,15 +49,8 @@ class FeatureRequestsViewModel {
               'token': token
             },
             success: function (data) {
-              self.table = $('#feature_requests_dt').DataTable({
-                data: data.feature_requests,
-                columns: [
-                  { data: 'id' },
-                  { data: 'client_id' },
-                  { data: 'title' },
-                  { data: 'description' }
-                ]
-              })
+              self.table.clear().draw();
+              self.table.rows.add(data.feature_requests).draw();
             },
             error: function (error) {
               if (error.status === 403) {
@@ -106,6 +109,8 @@ class FeatureRequestsViewModel {
     }
 
     addNewFeatureRequest() {
+      var self = this;
+
       var data = {
         title: this.newFeatureRequestTitle(),
         description: this.newFeatureRequestDescription(),
@@ -125,14 +130,16 @@ class FeatureRequestsViewModel {
             'token': token
           },
           success: function (response) {
-            console.log(response);
             $('#addFeatureRequestModal').modal('hide');
             alertify.success("Feature request added successfully!");
+            self.getAllFeatureRequests();
           },
           error: function (error) {
             $('#addFeatureRequestModal').modal('hide');
             if (error.status === 403) {
               alertify.error("Your session expired! Please login again and redo the action!");
+              $('div.modal-backdrop').remove();
+              self.isLoggedIn(false);
               router.hasher.setHash('login');
             } else {
               alertify.error("An error occurred. Please try again.");
