@@ -30,7 +30,7 @@ class LoginViewModel {
           router.hasher.setHash('');
         },
         error: function (error) {
-          console.error("Error while calling login endpoint: " + error);
+          console.error("Error while calling login endpoint: " + JSON.stringify(error));
         }
       });
     }
