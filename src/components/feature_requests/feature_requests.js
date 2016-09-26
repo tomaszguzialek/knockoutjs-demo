@@ -138,6 +138,8 @@ class FeatureRequestsViewModel {
             $('#addFeatureRequestModal').modal('hide');
             if (error.status === 403) {
               alertify.error("Your session expired! Please login again and redo the action!");
+              $('div.modal-backdrop').remove();
+              self.isLoggedIn(false);
               router.hasher.setHash('login');
             } else {
               alertify.error("An error occurred. Please try again.");
