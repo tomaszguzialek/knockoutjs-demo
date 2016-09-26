@@ -3,6 +3,7 @@ import template from 'text!./nav-bar.html';
 import * as router from 'app/router';
 import Cookie from 'js-cookie';
 import alertify from 'alertifyjs';
+import { app_config } from 'app/app_config';
 
 class NavBarViewModel {
     constructor(params) {
@@ -31,8 +32,27 @@ class NavBarViewModel {
     }
 
     logout() {
-      Cookie.remove('token');
-      this.isLoggedIn(false);
+      var self = this;
+
+      var data = {
+        token: Cookie.get('token')
+      };
+
+      $.ajax({
+        url: 'http://' + app_config.api_host + '/v1/auth/logout',
+        data: ko.toJSON(data),
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function (response) {
+          Cookie.remove('token');
+          self.isLoggedIn(false);
+          router.hasher.setHash('');
+        },
+        error: function (error) {
+          console.error("Error while calling logout endpoint: " + JSON.stringify(error));
+        }
+      });
     }
 }
 
